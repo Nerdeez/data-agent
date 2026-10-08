@@ -49,3 +49,7 @@ tofu --version
 kubectl version --client
 argocd version --client
 ```
+
+## GitOps (`k8s/`)
+
+Cluster workload manifests live in [`k8s/apps/`](k8s/apps/). Register the Argo CD `Application` once (see [`k8s/README.md`](k8s/README.md)), then push changes to [github.com/Nerdeez/data-agent](https://github.com/Nerdeez/data-agent) for Argo CD to reconcile.
