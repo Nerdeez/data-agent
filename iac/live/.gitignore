@@ -1,0 +1,19 @@
+# Terragrunt download and stack working directories
+.terragrunt-cache/
+**/.terragrunt-cache/
+.terragrunt-stack/
+
+# OpenTofu/Terraform plugin cache (state is remote in GCS)
+.terraform/
+**/.terraform/
+
+# Local state and crash logs (should not exist with remote_state)
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Org-specific live config (committed templates: config/*.example.hcl)
+config/billing.hcl
+config/common.hcl
+config/region.hcl
