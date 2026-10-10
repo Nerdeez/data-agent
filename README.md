@@ -6,7 +6,7 @@ This repository deploys **DataAgent** onto a Kubernetes cluster that is managed 
 
 Tool versions for this project are pinned in [`mise.toml`](mise.toml). [mise](https://mise.jdx.dev/) installs those binaries and puts them on your `PATH` when you are in this repository.
 
-This project uses Terragrunt, OpenTofu, kubectl, and the Argo CD CLI. Exact versions are defined in [`mise.toml`](mise.toml).
+This project uses Terragrunt, OpenTofu, kubectl, the Argo CD CLI, kind, and k8sgpt. Exact versions are defined in [`mise.toml`](mise.toml).
 
 ### Install mise
 
@@ -48,6 +48,8 @@ terragrunt --version
 tofu --version
 kubectl version --client
 argocd version --client
+kind version
+k8sgpt version
 ```
 
 ## GitOps (`k8s/`)
