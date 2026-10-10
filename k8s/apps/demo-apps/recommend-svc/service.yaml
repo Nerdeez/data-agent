@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommend-svc
+  labels:
+    app: recommend-svc
+spec:
+  selector:
+    app: recommend-svc
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

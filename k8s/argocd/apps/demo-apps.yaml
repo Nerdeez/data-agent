@@ -1,0 +1,35 @@
+# ArgoCD application for managing all the demo apps
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-apps
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: data-agent-workshop
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Nerdeez/data-agent.git
+    targetRevision: main
+    path: k8s/apps/demo-apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-apps
+  syncPolicy:
+    automated:
+      prune: true
+      # The trigger-*leak.sh scripts inject faults with `kubectl set env`;
+      # self-heal would revert them before the incident develops.
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+      # ServiceMonitor CRDs arrive with kube-prometheus-stack, which may sync later.
+      - SkipDryRunOnMissingResource=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
